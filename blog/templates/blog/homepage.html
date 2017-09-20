@@ -1,7 +1,16 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+</br></br></br></br>
+<h1>All Blogs</h1>
+{% if blog_list %}
     {% for blog in blog_list %}
-        <li>{{ blog.title }}{{ blog.Author.username }} {{ blog.posted_date }}</li>
+        <li><a href="{% url 'blog:blog_detail' blog.id %}">{{ blog.title }}</a>({{ blog.published_time }})
+            -------{{ blog.author.username }}</li>
     {% endfor %}
+{% else %}
+    <p>No blogs are found</p>
+{% endif %}
+
+
 {% endblock %}
