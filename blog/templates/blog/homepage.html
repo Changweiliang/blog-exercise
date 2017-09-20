@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <p>Hello World</p>
+    {% for blog in blog_list %}
+        <li>{{ blog.title }}{{ blog.Author.username }} {{ blog.posted_date }}</li>
+    {% endfor %}
 {% endblock %}
