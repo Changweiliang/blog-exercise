@@ -13,5 +13,8 @@ class MyPost(models.Model):
     published_time = models.DateTimeField()
     created_time = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        ordering = ['title']
+
     def __str__(self):
         return self.title
