@@ -1,12 +1,13 @@
 {% extends 'blog/base.html' %}
-
+{% load blog_tag %}
 {% block content %}
 </br></br></br></br>
 <h1>All Blogs</h1>
 {% if blog_list %}
     {% for blog in blog_list %}
+        {% autoescape off %}
         <li><a href="{% url 'blog:blog_detail' blog.id %}">{{ blog.title }}</a>({{ blog.published_time }})
-            -------{{ blog.author.username }}</li>
+            -------{% real_name_or_username blog %}</li> {% endautoescape %}
     {% endfor %}
 {% else %}
     <p>No blogs are found</p>
