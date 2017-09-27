@@ -44,3 +44,6 @@ def blog_detail(request, pk):
         'blog': blog
     }
     return render(request, 'blog/blog_detail.html', context)
+
+def edit_blog(request,pk):
+    pass

@@ -25,9 +25,15 @@
       <ul class="sidebar-nav">
           </br></br></br></br></br>
           <li><a href="{% url 'blog:homepage' %}">Home</a></li>
-
           <li><a href="">All blogs</a></li>
           <li><a href="">All bloggers</a></li>
+
+          {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li>Welcome {{ user.first_name }} {{ user.last_name }}</li>
+          {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
       </ul>
      {% endblock %}
       </div>
