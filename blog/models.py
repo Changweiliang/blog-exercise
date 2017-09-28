@@ -1,11 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import AbstractUser
-
-
-class User(AbstractUser):
-    pass
-
+from django.contrib.auth.models import User
 
 default_author = 1
 # Create your models here.

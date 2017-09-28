@@ -5,9 +5,8 @@
 <h1>All Blogs</h1>
 {% if blog_list %}
     {% for blog in blog_list %}
-        {% autoescape off %}
         <li><a href="{% url 'blog:blog_detail' blog.id %}">{{ blog.title }}</a>({{ blog.published_time }})
-            -------{% real_name_or_username blog %}</li> {% endautoescape %}
+            -------{% real_name_or_username blog %}</li>
     {% endfor %}
 {% else %}
     <p>No blogs are found</p>
@@ -43,7 +42,7 @@
         {% endif %}
 
     {% endif %}
-
+{{ user.is_ }}
 
 {% endif %}
 {% endblock %}
