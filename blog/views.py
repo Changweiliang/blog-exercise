@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 from . import models
-from django.core.paginator import Paginator
+from django.contrib.auth import views
 
 
 class HomePage(ListView):
@@ -46,4 +46,7 @@ def blog_detail(request, pk):
     return render(request, 'blog/blog_detail.html', context)
 
 def edit_blog(request,pk):
+    pass
+
+class MyLoginView(views.LoginView):
     pass
