@@ -26,7 +26,7 @@ SECRET_KEY = '^fls25ix=396jf0hc9k$&%s09f@&d(+7i96_cdxi^2fj!-6w82'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'changweiliang.pythonanywhere.com']
-
+AUTH_USER_MODEL = 'my_auth.User'
 
 # Application definition
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'my_auth',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'myblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates'],
+        'DIRS': ['./auth/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

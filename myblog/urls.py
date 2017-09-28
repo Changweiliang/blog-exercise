@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('django.contrib.auth.urls')),
     url(r'^', include("blog.urls")),
+    url(r'^profile/', include("my_auth.urls")),
 ]
