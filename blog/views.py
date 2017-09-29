@@ -14,7 +14,7 @@ class HomePage(ListView):
     context_object_name = 'blog_list'
 
     def get_queryset(self):
-        return models.MyPost.objects.all().order_by('published_time')
+        return models.MyPost.objects.all().order_by('-published_time')
 
     def get_context_data(self, **kwargs):
         pages_to_show_in_one_series = 5
@@ -71,15 +71,15 @@ def create_blog(request):
     context = {}
     if request.method == 'POST':
         print('if')
-        new_blog_form = BlogForm()
+        new_blog_form = BlogForm(request.POST)
         print(new_blog_form.is_valid())
         if new_blog_form.is_valid():
             new_blog_cd = new_blog_form.cleaned_data
             print(request.user)
             new_blog = models.MyPost.objects.create(author=request.user,
-                title=new_blog_cd.title, tags=new_blog_cd.tags,
-                content=new_blog_cd.content,published_time=new_blog_cd.published_time,
-                created_time=new_blog_cd.created_time
+                title=new_blog_cd['title'], tags=new_blog_cd['tags'],
+                content=new_blog_cd['content'],published_time=new_blog_cd['published_time'],
+                created_time=new_blog_cd['created_time']
             )
             print(new_blog)
             new_blog.save()
