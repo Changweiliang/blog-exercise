@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import decorators as auth_decorators
 from django.views.generic import ListView
 from . import models
+from .forms.blog_form import BlogForm
+from django.template.context import RequestContext
 
 
 class HomePage(ListView):
@@ -38,11 +41,24 @@ class HomePage(ListView):
 
 def blog_detail(request, pk):
     blog = get_object_or_404(models.MyPost, pk=pk)
-
+    template_name = 'blog/blog_detail.html'
     context = {
         'blog': blog
     }
-    return render(request, 'blog/blog_detail.html', context)
+    return render(request, template_name, context)
 
+
+@auth_decorators.login_required
+@auth_decorators.permission_required(['blogs.edit_blog'], raise_exception=True)
 def edit_blog(request,pk):
-    pass
+    blog = get_object_or_404(models.MyPost, pk=pk)
+    template_name = 'blog/edit_blog'
+    if request.method == "POST":
+        pass
+    else:
+        blog_edit_form = BlogForm
+
+    context = RequestContext(request)
+
+    render(request, template_name, context)
+
