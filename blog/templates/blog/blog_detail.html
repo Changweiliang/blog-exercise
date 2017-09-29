@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% load blog_tag %}
+
+{% block content %}
+    <h1>{{ blog.title }}</h1>
+    <p1>{% real_name_or_username blog %}</p1>
+    <p2>{{ blog.published_time }}</p2></br></br></br>
+    <p3>{{ blog.content }}</p3>
+
+{% endblock %}
