@@ -11,6 +11,8 @@ class MyPost(models.Model):
     tags = models.CharField(max_length=20, null=True, blank=True)
     published_time = models.DateTimeField(default=timezone.now)
     created_time = models.DateTimeField(default=timezone.now)
+    is_draft = models.BooleanField(default=False)
+
 
     class Meta:
         ordering = ['published_time']
