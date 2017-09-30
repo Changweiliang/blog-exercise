@@ -27,10 +27,12 @@ class HomePage(ListView):
 
 
 def blog_detail(request, pk):
-    blog = get_object_or_404(models.MyPost, pk=pk)
+    blog_instance = get_object_or_404(models.MyPost, pk=pk)
     template_name = 'blog/blog_detail.html'
+    if blog_instance.author.username == request.user.username or request.user.is_superuser:
+        blog_instance.can_be_edited = True
     context = {
-        'blog': blog
+        'blog': blog_instance,
     }
     return render(request, template_name, context)
 
@@ -39,16 +41,32 @@ def blog_detail(request, pk):
 # @auth_decorators.permission_required(['blogs.edit_blog'], raise_exception=True)
 def edit_blog(request,pk):
     blog_instance = get_object_or_404(models.MyPost, pk=pk)
-    template_name = 'blog/edit_blog'
+    template_name = 'blog/edit_blog.html'
     context = {}
-    if request.method == "POST":
-        blog_edit_form = BlogForm(request.POST)
-        if blog_edit_form.is_valid():
-            blog_clean_data = blog_edit_form.cleaned_data
+    # if request user is the owner of the blog
+    if blog_instance.author.username == request.user.username or request.user.is_superuser:
+        if request.method == "POST":
+            blog_edit_form = BlogForm(request.POST)
+            if blog_edit_form.is_valid():
+                blog_cd = blog_edit_form.cleaned_data
+                blog_instance.title, blog_instance.tags, blog_instance.content, blog_instance.published_time, blog_instance.created_time \
+                    = blog_cd['title'], blog_cd['tags'], blog_cd['content'], blog_cd['published_time'], blog_cd['created_time']
+                blog_instance.save()
+                return HttpResponseRedirect(reverse('blog:blog_detail', args=(blog_instance.id,)))
+        else:
+            blog_edit_form = BlogForm(initial={
+                'title': blog_instance.title,
+                'tags': blog_instance.tags,
+                'content': blog_instance.content,
+                'published_time': blog_instance.published_time,
+                'created_time': blog_instance.created_time,
+            })
+            context['blog_edit_form'] = blog_edit_form
+            return render(request, template_name, context)
     else:
-        blog_edit_form = BlogForm
-
-    render(request, template_name, context)
+        context['permission_error'] = True
+        template_name = 'registration/permission_denied.html'
+        return render(request, template_name, context)
 
 
 @auth_decorators.login_required()
@@ -62,11 +80,7 @@ def create_blog(request):
         if new_blog_form.is_valid():
             new_blog_cd = new_blog_form.cleaned_data
             # print(request.user)
-            new_blog = models.MyPost.objects.create(author=request.user,
-                title=new_blog_cd['title'], tags=new_blog_cd['tags'],
-                content=new_blog_cd['content'],published_time=new_blog_cd['published_time'],
-                created_time=new_blog_cd['created_time']
-            )
+            new_blog = models.MyPost.objects.create(author=request.user,**new_blog_cd)
             #print(new_blog)
             new_blog.save()
             return HttpResponseRedirect(reverse('blog:blog_detail', args=(new_blog.id,)))

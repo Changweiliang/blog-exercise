@@ -20,7 +20,7 @@
             {% if page_obj.number == i %}
                 {{ i }}
             {% else %}
-                <a href="?page={{ page_number }}">{{ i }}</a>
+                <a href="?page={{ page_obj.number }}">{{ i }}</a>
             {% endif %}
         {% endfor %}
         {% if page_obj.has_next %}
