@@ -12,7 +12,8 @@
             {% csrf_token %}
             {{ blog_form }}
         </table>
-        <input type="submit" value="Submit" />
+        <input type="submit" name="publish" value="Publish" />
+        <input type="submit" name="save_as_draft" value="Save draft">
     </form>
 </body>
 

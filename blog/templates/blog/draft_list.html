@@ -2,7 +2,7 @@
 {% load blog_tag %}
 {% block content %}
 </br></br></br></br>
-<h1>All Blogs</h1>
+<h1>{{ user.username|title }}'s Drafts</h1>
 {% if blog_list %}
     {% for blog in blog_list %}
         <li><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>({{ blog.published_time }})

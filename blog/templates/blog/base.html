@@ -25,17 +25,20 @@
       <ul class="sidebar-nav">
           </br></br></br></br></br>
           <li><a href="{% url 'blog:homepage' %}">Home</a></li>
-          <li><a href="">All blogs</a></li>
-          <li><a href="">All bloggers</a></li>
+          <li><a href="{% url 'blog:blogger' %}">All bloggers</a></li>
 
           {% if user.is_authenticated %}
+                <li><a href="{% url 'blog:create_blog' %}">Write a Blog</a></li>
+                <li><a href="">My Profile</a></li>
+                <li><a href="{% url 'blog:my_blog' %}">My Blog</a></li>
+                <li><a href="{% url 'blog:draft_blog' %}">Draft</a></li>
+                <li><a href="{% url 'blog:private_blog' %}">Private Blog</a></li>
+                <li>Welcome {{ user.first_name }} {{ user.last_name }}</li>
                 <li><a href="{% url 'auth:logout' %}">Logout</a></li>
-                <li><a href="{% url 'blog:create_blog' %}">Write a blog</a></li>
-                <li><a href="">Profile</a></li>
           {% else %}
                 <li><a href="{% url 'auth:login' %}">Login</a></li>
           {% endif %}
-          <li>Welcome {{ user.first_name }} {{ user.last_name }}</li>
+
       </ul>
      {% endblock %}
       </div>
