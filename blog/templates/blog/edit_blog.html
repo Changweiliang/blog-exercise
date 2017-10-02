@@ -1,5 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
 {% extends 'blog/base.html' %}
-<html>
+
+{% block title %}
+    <title>{{ blog.title }}</title>
+{% endblock %}
+
 {% block content %}
     {% if form.errors %}
         <p style="color:red;">
@@ -15,7 +21,6 @@
         <input type="submit" name="publish" value="Publish" />
         <input type="submit" name="save_as_draft" value="Save draft">
     </form>
-</body>
-
 {% endblock %}
+
 </html>

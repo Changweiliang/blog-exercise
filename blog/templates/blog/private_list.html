@@ -1,7 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
 {% extends 'blog/base.html' %}
 {% load blog_tag %}
+
+{% block title %}
+    <title>My Private Blog</title>
+{% endblock %}
+
 {% block content %}
 </br></br></br></br>
+
 <h1>{{ user.username|title }}'s Private Blogs</h1>
 {% if blog_list %}
     {% for blog in blog_list %}
@@ -40,8 +48,9 @@
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}">Next</a>
         {% endif %}
-
     {% endif %}
-
 {% endif %}
+
 {% endblock %}
+
+</html>

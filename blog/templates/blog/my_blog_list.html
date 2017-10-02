@@ -1,5 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
 {% extends 'blog/base.html' %}
 {% load blog_tag %}
+
+{% block title %}
+    <title>My Blog</title>
+{% endblock %}
+
 {% block content %}
 </br></br></br></br>
 <h1>{{ user.username|title }}'s Blogs</h1>
@@ -45,3 +52,5 @@
 
 {% endif %}
 {% endblock %}
+
+</html>
