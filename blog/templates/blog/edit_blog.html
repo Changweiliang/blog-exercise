@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    <title>{{ blog.title }}</title>
+{% endblock %}
+
+{% block content %}
+    {% if form.errors %}
+        <p style="color:red;">
+            Please correct the error{{ form.error|pluralize }} below.
+        </p>
+    {% endif %}
+    </br></br></br></br></br></br></br></br></br></br>
+    <form action="" method="post">
+        <table>
+            {% csrf_token %}
+            {{ blog_edit_form }}
+        </table>
+        <input type="submit" name="publish" value="Publish" />
+        <input type="submit" name="save_as_draft" value="Save draft">
+    </form>
+{% endblock %}
+
+</html>

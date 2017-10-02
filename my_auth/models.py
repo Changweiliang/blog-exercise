@@ -1,29 +1,31 @@
-from django.contrib.auth import models
+from django.contrib.auth import models as auth_models
+from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
-class PermissionManager(models.PermissionManager):
+class PermissionManager(auth_models.PermissionManager):
     pass
 
 
-class Permission(models.Permission):
+class Permission(auth_models.Permission):
     pass
 
 
-class GroupManager(models.GroupManager):
+class GroupManager(auth_models.GroupManager):
     pass
 
 
-class Group(models.Group):
+class Group(auth_models.Group):
     pass
 
 
-class UserManager(models.UserManager):
+class UserManager(auth_models.UserManager):
     pass
 
 
-class User(models.AbstractUser):
-    pass
+class User(auth_models.AbstractUser):
+    email = models.EmailField(_('email address'), unique=True)
 
 
-class AnonymousUser(models.AnonymousUser):
+class AnonymousUser(auth_models.AnonymousUser):
     pass

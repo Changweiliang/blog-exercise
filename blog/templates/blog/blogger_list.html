@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'blog/base.html' %}
+{% load blog_tag %}
+{% block content %}
+</br></br></br></br>
+
+{% block title %}
+    <title>{{ blog.title }}</title>
+{% endblock %}
+
+<h1>All Bloggers in This Site</h1>
+{% if blogger_list %}
+    {% for blogger in blogger_list %}
+        <li><a href="">{{ blogger.username }}</a></li>
+    {% endfor %}
+{% else %}
+    <p>No bloggers are found</p>
+{% endif %}
+
+{% if is_paginated %}
+    {% if multiple_page_series_to_show %}
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        {% for i in page_number_to_be_show %}
+            {% if page_obj.number == i %}
+                {{ i }}
+            {% else %}
+                <a href="?page={{ page_obj.number }}">{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    {% else %}
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+        {% for page_number in paginator.page_range %}
+            {% if page_obj.number == page_number %}
+                {{ page_number }}
+            {% else %}
+                <a href="?page={{ page_number }}">{{ page_number }}</a>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+        {% endif %}
+    {% endif %}
+{% endif %}
+{% endblock %}
+
+</html>
