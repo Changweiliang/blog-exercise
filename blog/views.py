@@ -51,7 +51,6 @@ def blog_detail(request, pk):
 
 
 @auth_decorators.login_required
-# @auth_decorators.permission_required(['blogs.edit_blog'], raise_exception=True)
 def edit_blog(request,pk):
     blog_instance = get_object_or_404(models.MyPost, pk=pk)
     template_name = 'blog/edit_blog'
@@ -65,6 +64,7 @@ def edit_blog(request,pk):
 
     render(request, template_name, context)
 
+
 @auth_decorators.login_required()
 def create_blog(request):
     template_name = 'blog/create_blog.html'
@@ -75,13 +75,7 @@ def create_blog(request):
         print(new_blog_form.is_valid())
         if new_blog_form.is_valid():
             new_blog_cd = new_blog_form.cleaned_data
-            print(request.user)
-            new_blog = models.MyPost.objects.create(author=request.user,
-                title=new_blog_cd['title'], tags=new_blog_cd['tags'],
-                content=new_blog_cd['content'],published_time=new_blog_cd['published_time'],
-                created_time=new_blog_cd['created_time']
-            )
-            print(new_blog)
+            new_blog = models.MyPost.objects.create(author=request.user, **new_blog_cd)
             new_blog.save()
             return HttpResponseRedirect(reverse('blog:blog_detail', args=(new_blog.id,)))
     else:
