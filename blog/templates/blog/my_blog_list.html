@@ -18,39 +18,7 @@
 {% else %}
     <p>No blogs are found</p>
 {% endif %}
-{% if is_paginated %}
-    {% if multiple_page_series_to_show %}
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
-        {% for i in page_number_to_be_show %}
-            {% if page_obj.number == i %}
-                {{ i }}
-            {% else %}
-                <a href="?page={{ page_obj.number }}">{{ i }}</a>
-            {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Next</a>
-        {% endif %}
-    {% else %}
-        {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        {% endif %}
-        {% for page_number in paginator.page_range %}
-            {% if page_obj.number == page_number %}
-                {{ page_number }}
-            {% else %}
-                <a href="?page={{ page_number }}">{{ page_number }}</a>
-            {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Next</a>
-        {% endif %}
-
-    {% endif %}
-
-{% endif %}
+{% include "blog/pagination.html" %}
 {% endblock %}
 
 </html>
