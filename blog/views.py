@@ -92,7 +92,6 @@ def blog_detail(request, pk):
 
 
 @auth_decorators.login_required(login_url = 'auth:login')
-# @auth_decorators.permission_required(['blogs.edit_blog'], raise_exception=True)
 def edit_blog(request,pk):
     blog_instance = get_object_or_404(models.MyPost, pk=pk)
     template_name = 'blog/edit_blog.html'
@@ -138,6 +137,7 @@ def create_blog(request):
         # print(new_blog_form.is_valid())
         if new_blog_form.is_valid():
             new_blog_cd = new_blog_form.cleaned_data
+            new_blog = models.MyPost.objects.create(author=request.user, **new_blog_cd)
             # print(request.user)
             new_blog = models.MyPost.objects.create(author=request.user,**new_blog_cd)
             if 'save_as_draft' in request.POST:
