@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load blog_tag %}
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
     {% if is_paginated %}
         {% if multiple_page_series_to_show %}
             {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                <button type="button" class="btn"><a href="?page={{ page_obj.previous_page_number }}">Previous</a></button>
             {% endif %}
             {% for i in page_number_to_be_show %}
                 {% if page_obj.number == i %}
-                    {{ i }}
+                    <button type="button" class="btn">{{ i }}</button>
                 {% else %}
-                    <a href="?page={{ page_obj.number }}">{{ i }}</a>
+                    <button type="button" class="btn"><a href="?page={{ page_obj.number }}">{{ i }}</a></button>
                 {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                <button type="button" class="btn"><a href="?page={{ page_obj.next_page_number }}">Next</a></button>
             {% endif %}
         {% else %}
             {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                <button type="button" class="btn"><a href="?page={{ page_obj.previous_page_number }}">Previous</a></button>
             {% endif %}
             {% for page_number in paginator.page_range %}
                 {% if page_obj.number == page_number %}
                     {{ page_number }}
                 {% else %}
-                    <a href="?page={{ page_number }}">{{ page_number }}</a>
+                    <button type="button" class="btn"><a href="?page={{ page_number }}">{{ page_number }}</a></button>
                 {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <button type="button" class="btn"><a href="?page={{ page_obj.next_page_number }}">Next</a></button>
             {% endif %}
         {% endif %}
     {% endif %}
+</body>
 </html>

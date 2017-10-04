@@ -8,12 +8,14 @@
 {% endblock %}
 
 {% block content %}
-    </br></br></br></br>
-    <h1>All Blogs</h1>
+    <h1>All Posted Blogs</h1>
     {% if blog_list %}
         {% for blog in blog_list %}
-            <li><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>({{ blog.published_time }})
-            -------{% real_name_or_username blog %}</li>
+            <h2><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h2>
+            <h5><span class="glyphicon glyphicon-time"></span> Posted by {% real_name_or_username blog %}, {{ blog.published_time }}.</h5>
+            <h5><span class="label label-primary">{{ blog.tags }}</span></h5><br>
+            <p>{{ blog.content }}</p>
+            </br></br>
         {% endfor %}
     {% else %}
         <p>No blogs are found</p>
