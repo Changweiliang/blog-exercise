@@ -139,7 +139,6 @@ def create_blog(request):
             new_blog_cd = new_blog_form.cleaned_data
             new_blog = models.MyPost.objects.create(author=request.user, **new_blog_cd)
             # print(request.user)
-            #new_blog = models.MyPost.objects.create(author=request.user,**new_blog_cd)
             if 'save_as_draft' in request.POST:
                 new_blog.is_draft = True
             elif 'Publish' in request.POST:
