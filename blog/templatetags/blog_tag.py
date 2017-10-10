@@ -9,3 +9,8 @@ def real_name_or_username(blog):
         return format_html('%s' % blog.author.first_name), format_html(blog.author.last_name)
     else:
         return blog.author.username
+
+
+@register.filter(name='addclass')
+def addclass(value, arg):
+    return value.as_widget(attrs={'class': arg})

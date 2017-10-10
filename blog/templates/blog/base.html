@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load blog_tag %}
+{% load static %}
 <head>
 
   {% block title %}{% endblock %}
@@ -10,8 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/css/blog.css' %}">
 </head>
 
 <body>

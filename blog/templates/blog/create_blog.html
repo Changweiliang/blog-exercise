@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% extends 'blog/base.html' %}
+{% load blog_tag %}
 <head>
     {% block title %}
         <title>New Blog</title>
@@ -9,47 +10,46 @@
 
 <body>
 {% block content %}
-    <style>
-    body {
-        background-color: lightblue;
-    }
-    </style>
-
     {% if form.errors %}
-        <p style="color:red;">
+        <p>
             Please correct the error{{ form.error|pluralize }} below.
         </p>
     {% endif %}
-    <h2>Compose New Blog</h2>
-        <form action="" method="post">
-            {% csrf_token %}
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <label for="id_title" class="control-label col-sm-5">Title:</label>
-                        {{ blog_form.title }}
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <label for="id_tags">Tags</label>
-                    <input type="text" name="tags" maxlength="20" id="id_tags" />
-                </div>
-            </div>
 
-            <li><label for="id_content">Content:</label>
-                <textarea name="content" cols="40" rows="10" id="id_content"></textarea></li>
+<h2>Compose New Blog</h2>
 
+<form action="" class="blog_form" method="post">
+    {% csrf_token %}
+    <div class="fieldWrapper">
+        {{ blog_form.title.label_tag }}
+        <label for="{{ id_title }}">Titlessss</label>
+        {{ blog_form.title|addclass:"blog_title" }}
+    </div>
 
-            <li><label for="id_published_time">Published time:</label>
-                <input type="text" name="published_time" value="2017-10-03 23:35:10" required id="id_published_time" /><input type="hidden" name="initial-published_time" value="2017-10-03 23:35:10" id="initial-id_published_time" /></li>
+    <div class="fieldWrapper">
+        {{ blog_form.tags.label_tag }}
+        {{ blog_form.tags|addclass:"blog_tags" }}
+    </div>
 
+    <div class="fieldWrapper">
+        {{ blog_form.content.label_tag }}
+        {{ blog_form.content|addclass:"blog_content" }}
+    </div>
 
-            <li><label for="id_created_time">Created time:</label>
-            <input type="text" name="created_time" value="2017-10-03 23:35:10" required id="id_created_time" /><input type="hidden" name="initial-created_time" value="2017-10-03 23:35:10" id="initial-id_created_time" /></li>
+    <div class="fieldWrapper">
+        {{ blog_form.published_time.label_tag }}
+        {{ blog_form.published_time|addclass:"blog_published_time" }}
+    </div>
 
-            <input type="submit" name="publish" value="Publish" />
-            <input type="submit" name="save_as_draft" value="Save draft">
-        </form>
+     <div class="fieldWrapper">
+         {{ blog_form.created_time.label_tag }}
+        {{ blog_form.created_time|addclass:"blog_created_time" }}
+    </div>
+
+    <button type="button" class="btn"><input type="submit" name="publish" value="Publish" /></button>
+    <input type="submit" name="save_as_draft" value="Save draft">
+
+</form>
 
 {% endblock %}
 </body>
