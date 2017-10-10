@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: lightgray;
+            pading: 50px;
+            text-align: center;
+        }
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 10px;
+            height: 300px;
+        }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="header">
+        <h1>Header</h1>
+    </div>
+
+    <div class="row">
+        <div class="column">Left Column</div>
+        <div class="column">Middle Column</div>
+        <div class="column">Right Column</div>
+    </div>
+
+</body>
+</html>

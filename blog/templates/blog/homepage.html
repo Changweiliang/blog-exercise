@@ -3,19 +3,22 @@
 {% extends 'blog/base.html' %}
 {% load blog_tag %}
 
+
 {% block title %}
     <title>Homepage</title>
 {% endblock %}
 
 {% block content %}
-    <h1>All Posted Blogs</h1>
+    {% load static %}
+    <link rel="stylesheet" style="text/css" href="{% static 'css/blog.css' %}">
+    <h1 class="center">All Posted Blogs</h1>
     {% if blog_list %}
         {% for blog in blog_list %}
             <h2><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h2>
             <h5><span class="glyphicon glyphicon-time"></span> Posted by {% real_name_or_username blog %}, {{ blog.published_time }}.</h5>
             <h5><span class="label label-primary">{{ blog.tags }}</span></h5><br>
-            <p>{{ blog.content }}</p>
-            </br></br>
+            <p class="what">{{ blog.content }}</p>
+
         {% endfor %}
     {% else %}
         <p>No blogs are found</p>

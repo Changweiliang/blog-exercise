@@ -2,22 +2,26 @@
 <html lang="en">
 {% extends 'blog/base.html' %}
 {% load blog_tag %}
-{% block content %}
-</br></br></br></br>
 
 {% block title %}
     <title>{{ blog.title }}</title>
 {% endblock %}
 
-<h1>All Bloggers in This Site</h1>
-{% if blogger_list %}
-    {% for blogger in blogger_list %}
-        <li><a href="">{{ blogger.username }}</a></li>
-    {% endfor %}
-{% else %}
+
+{% block content %}
+    </br></br></br></br>
+
+    <h1>All Bloggers in This Site</h1>
+    {% if blogger_list %}
+        {% for blogger in blogger_list %}
+            <li><a href="">{{ blogger.username }}</a></li>
+        {% endfor %}
+    {% else %}
     <p>No bloggers are found</p>
-{% endif %}
-{% include "blog/pagination.html" %}
+    {% endif %}
+
+    {% include "blog/pagination.html" %}
+
 {% endblock %}
 
 </html>

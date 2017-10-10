@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 {% extends 'blog/base.html' %}
+<head>
+    {% block title %}
+        <title>New Blog</title>
+    {% endblock %}
+</head>
 
-{% block title %}
-    <title>New Blog</title>
-{% endblock %}
-
+<body>
 {% block content %}
+    <style>
+    body {
+        background-color: lightblue;
+    }
+    </style>
+
     {% if form.errors %}
         <p style="color:red;">
             Please correct the error{{ form.error|pluralize }} below.
         </p>
     {% endif %}
-<h2>Compose New Blog</h2>
-    <form action="" method="post">
+    <h2>Compose New Blog</h2>
+        <form action="" method="post">
             {% csrf_token %}
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <label for="id_title" class="control-label col-sm-5">Title:</label>
-                    {{ blog_form.title }}
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="id_title" class="control-label col-sm-5">Title:</label>
+                        {{ blog_form.title }}
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-6">
-                <label for="id_tags">Tags</label>
-                <input type="text" name="tags" maxlength="20" id="id_tags" />
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="id_tags">Tags</label>
+                    <input type="text" name="tags" maxlength="20" id="id_tags" />
+                </div>
             </div>
-        </div>
 
-        <li><label for="id_content">Content:</label>
-            <textarea name="content" cols="40" rows="10" id="id_content"></textarea></li>
-
-
-        <li><label for="id_published_time">Published time:</label>
-            <input type="text" name="published_time" value="2017-10-03 23:35:10" required id="id_published_time" /><input type="hidden" name="initial-published_time" value="2017-10-03 23:35:10" id="initial-id_published_time" /></li>
+            <li><label for="id_content">Content:</label>
+                <textarea name="content" cols="40" rows="10" id="id_content"></textarea></li>
 
 
-        <li><label for="id_created_time">Created time:</label>
+            <li><label for="id_published_time">Published time:</label>
+                <input type="text" name="published_time" value="2017-10-03 23:35:10" required id="id_published_time" /><input type="hidden" name="initial-published_time" value="2017-10-03 23:35:10" id="initial-id_published_time" /></li>
+
+
+            <li><label for="id_created_time">Created time:</label>
             <input type="text" name="created_time" value="2017-10-03 23:35:10" required id="id_created_time" /><input type="hidden" name="initial-created_time" value="2017-10-03 23:35:10" id="initial-id_created_time" /></li>
 
-        <input type="submit" name="publish" value="Publish" />
-        <input type="submit" name="save_as_draft" value="Save draft">
-    </form>
+            <input type="submit" name="publish" value="Publish" />
+            <input type="submit" name="save_as_draft" value="Save draft">
+        </form>
 
 {% endblock %}
-
+</body>
 </html>

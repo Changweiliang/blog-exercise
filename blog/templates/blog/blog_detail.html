@@ -3,7 +3,6 @@
 {% extends 'blog/base.html' %}
 {% load blog_tag %}
 <head>
-
     {% block title %}
         <title>{{ blog.title }}</title>
     {% endblock %}
@@ -13,15 +12,19 @@
 <body>
 
 {% block content %}
-            <h2>{{ blog.title }}</h2>
-            <h5><span class="glyphicon glyphicon-time"></span> Posted by {% real_name_or_username blog %}, {{ blog.published_time }}.</h5>
-            <h5><span class="label label-primary">{{ blog.tags }}</span></h5>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/blog.css' %}">
 
-            {% if blog.can_be_edited %}
-                <h5><button type="button" class="btn"><a href="{% url 'blog:edit_blog' blog.id %}">Edit blog</a></button>
-                    <button type="button" class="btn"><a href="">Delete blog</a></button></h5></br>
-            {% endif %}
-            <p>{{ blog.content }}</p>
+    <h2 id="center">{{ blog.title }}</h2>
+    <h5 id=""><span class="glyphicon glyphicon-time"></span> Posted by {% real_name_or_username blog %}, {{ blog.published_time }}.</h5>
+    <h5 id=""><span class="label label-primary">{{ blog.tags }}</span></h5>
+
+    {% if blog.can_be_edited %}
+        <h5><button type="button" class="btn"><a href="{% url 'blog:edit_blog' blog.id %}">Edit blog</a></button>
+            <button type="button" class="btn"><a href="">Delete blog</a></button></h5></br>
+    {% endif %}
+    <p>{{ blog.content }}</p>
+
 {% endblock %}
 </body>
 </html>
