@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 {% extends 'blog/base.html' %}
+{% load blog_tag %}
 
+<head>
 {% block title %}
     <title>{{ blog.title }}</title>
 {% endblock %}
+</head>
+
+<body>
 
 {% block content %}
     {% if form.errors %}
-        <p style="color:red;">
+        <p>
             Please correct the error{{ form.error|pluralize }} below.
         </p>
     {% endif %}
-    </br></br></br></br></br></br></br></br></br></br>
-    <form action="" method="post">
-        <table>
-            {% csrf_token %}
-            {{ blog_edit_form }}
-        </table>
-        <input type="submit" name="publish" value="Publish" />
-        <input type="submit" name="save_as_draft" value="Save draft">
-    </form>
+    <h2>Edit Blog</h2>
+    {% include "blog/blog_form.html" %}
 {% endblock %}
 
+</body>
 </html>

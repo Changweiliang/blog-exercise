@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load blog_tag %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form action="" class="" method="post">
+    {% csrf_token %}
+    <div class="fieldWrapper">
+        {{ blog_form.title.errors }}
+        {{ blog_form.title.label_tag }}
+        {{ blog_form.title|addclass:"blog_title" }}
+    </div>
+
+    <div class="fieldWrapper">
+        {{ blog_form.title.errors }}
+        {{ blog_form.tags.label_tag }}
+        {{ blog_form.tags|addclass:"blog_tags" }}
+    </div>
+
+    <div class="fieldWrapper">
+        {{ blog_form.content.errors }}
+        {{ blog_form.content.label_tag }}
+        {{ blog_form.content|addclass:"blog_content" }}
+    </div>
+
+    <div class="row">
+    <div class="fieldWrapper">
+        {{ blog_form.published_time.errors }}
+        {{ blog_form.published_time.label_tag }}
+        {{ blog_form.published_time|addclass:"blog_published_time" }}
+    </div>
+
+     <div class="fieldWrapper">
+         {{ blog_form.created_time.errors }}
+         {{ blog_form.created_time.label_tag }}
+         {{ blog_form.created_time|addclass:"blog_created_time" }}
+    </div>
+    </div>
+
+    <button class="btn btn-primary" name="publish">Publish</button>
+    <button class="btn btn-primary" name="save_as_draft">Save Draft</button>
+
+</form>
+
+</body>
+</html>

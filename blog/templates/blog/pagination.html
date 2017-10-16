@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
+
 <body>
     {% if is_paginated %}
         {% if multiple_page_series_to_show %}
@@ -18,7 +19,7 @@
                 {% if page_obj.number == i %}
                     <button type="button" class="btn">{{ i }}</button>
                 {% else %}
-                    <button type="button" class="btn"><a href="?page={{ page_obj.number }}">{{ i }}</a></button>
+                    <button type="button" class="btn"><a  href="?page={{ i }}">{{ i }}</a></button>
                 {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}

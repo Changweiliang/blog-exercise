@@ -15,7 +15,7 @@
             <h2><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h2>
             <h5><span class="glyphicon glyphicon-time"></span> Posted by {% real_name_or_username blog %}, {{ blog.published_time }}.</h5>
             <h5><span class="label label-primary">{{ blog.tags }}</span></h5><br>
-            <p class="blog_content">{{ blog.content|linebreaks }}</p>
+            <p>{{ blog.content|linebreaks }}</p>
 
         {% endfor %}
     {% else %}

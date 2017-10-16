@@ -2,6 +2,8 @@
 <html lang="en">
 {% extends 'blog/base.html' %}
 {% load blog_tag %}
+
+
 <head>
     {% block title %}
         <title>New Blog</title>
@@ -18,38 +20,7 @@
 
 <h2>Compose New Blog</h2>
 
-<form action="" class="blog_form" method="post">
-    {% csrf_token %}
-    <div class="fieldWrapper">
-        {{ blog_form.title.label_tag }}
-        <label for="{{ id_title }}">Titlessss</label>
-        {{ blog_form.title|addclass:"blog_title" }}
-    </div>
-
-    <div class="fieldWrapper">
-        {{ blog_form.tags.label_tag }}
-        {{ blog_form.tags|addclass:"blog_tags" }}
-    </div>
-
-    <div class="fieldWrapper">
-        {{ blog_form.content.label_tag }}
-        {{ blog_form.content|addclass:"blog_content" }}
-    </div>
-
-    <div class="fieldWrapper">
-        {{ blog_form.published_time.label_tag }}
-        {{ blog_form.published_time|addclass:"blog_published_time" }}
-    </div>
-
-     <div class="fieldWrapper">
-         {{ blog_form.created_time.label_tag }}
-        {{ blog_form.created_time|addclass:"blog_created_time" }}
-    </div>
-
-    <button type="button" class="btn"><input type="submit" name="publish" value="Publish" /></button>
-    <input type="submit" name="save_as_draft" value="Save draft">
-
-</form>
+{% include "blog/blog_form.html" %}
 
 {% endblock %}
 </body>

@@ -112,14 +112,14 @@ def edit_blog(request,pk):
                 blog_instance.save()
                 return HttpResponseRedirect(reverse('blog:blog_detail', args=(blog_instance.id,)))
         else:
-            blog_edit_form = BlogForm(initial={
+            blog_form = BlogForm(initial={
                 'title': blog_instance.title,
                 'tags': blog_instance.tags,
                 'content': blog_instance.content,
                 'published_time': blog_instance.published_time,
                 'created_time': blog_instance.created_time,
             })
-            context['blog_edit_form'] = blog_edit_form
+            context['blog_form'] = blog_form
             return render(request, template_name, context)
     else:
         context['permission_error'] = True
